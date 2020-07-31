@@ -1,5 +1,5 @@
 import React from "react";
-import { v4 as uuidv4 } from "uuid";
+
 import PhoneBook from "./components/Phonebook";
 import Filter from "./components/Filter";
 import PhonebookEditor from "./components/PhonebookEditor";
@@ -8,18 +8,13 @@ class App extends React.Component {
     contacts: [],
     filter: "",
   };
-  addContacts = (name, number) => {
-    const contact = {
-      id: uuidv4(),
-      name,
-      number,
-    };
+  addContacts = (contact) => {
     if (
       this.state.contacts.find(
         (cont) => cont.name.toLowerCase() === contact.name.toLowerCase()
       )
     ) {
-      alert(`${name} is already in contacts`);
+      alert(`${contact.name} is already in contacts`);
     } else {
       this.setState((prevState) => ({
         contacts: [...prevState.contacts, contact],
@@ -40,7 +35,6 @@ class App extends React.Component {
     }));
   };
   changeFilter = (filter) => {
-    console.log(filter);
     this.setState({ filter });
   };
   render() {

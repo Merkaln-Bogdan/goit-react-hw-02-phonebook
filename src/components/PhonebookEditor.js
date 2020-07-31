@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import style from "../styles/PhoneBook.module.css";
-
+import { v4 as uuidv4 } from "uuid";
 class PhonebookEditor extends Component {
+  static defaultProps = {
+    name: "no name",
+    number: "no number",
+  };
   state = { name: "", number: "" };
 
   handleChange = (e) => {
@@ -10,7 +14,11 @@ class PhonebookEditor extends Component {
   };
   handleSubmit = (e) => {
     e.preventDefault();
-    this.props.addContacts(this.state.name, this.state.number);
+    const contact = {
+      id: uuidv4(),
+      ...this.state,
+    };
+    this.props.addContacts(contact);
     this.setState({ name: "", number: "" });
   };
 

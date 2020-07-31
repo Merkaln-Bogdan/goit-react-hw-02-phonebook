@@ -1,5 +1,6 @@
 import React from "react";
 import style from "../styles/PhoneBook.module.css";
+import PropTypes from "prop-types";
 const PhonebookListItem = ({ id, name, number, onRemovePersonData }) => (
   <li key={id} className={style.listItem}>
     <span className={style.dataPerson}>{name}:</span>
@@ -10,3 +11,8 @@ const PhonebookListItem = ({ id, name, number, onRemovePersonData }) => (
   </li>
 );
 export default PhonebookListItem;
+PhonebookListItem.propTypes = {
+  id: PropTypes.string,
+  name: PropTypes.string,
+  number: PropTypes.string,
+};
